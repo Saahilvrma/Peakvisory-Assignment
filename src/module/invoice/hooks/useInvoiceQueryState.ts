@@ -6,8 +6,8 @@ import { DefaultQueryValues } from "../constants/defaultValues";
 import type { InvoiceStatusType } from "../types/invoice.types";
 
 export interface InvoiceQueryState {
-  page: number;
   limit: number;
+  page: number;
   search: string;
   status: InvoiceStatusType | "";
   setQuery: (
