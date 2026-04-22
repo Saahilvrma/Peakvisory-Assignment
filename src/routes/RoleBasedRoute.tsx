@@ -23,20 +23,6 @@ interface RoleBasedRouteProps {
   redirectTo?: string;
 }
 
-/**
- * Granular role + permission gate.
- *
- * Usage:
- * ```tsx
- * <Route element={<RoleBasedRoute role="Admin" />}>
- *   <Route path="/users" element={<UsersPage />} />
- * </Route>
- *
- * <Route element={<RoleBasedRoute permissions={['invoices:read', 'invoices:create']} />}>
- *   <Route path="/invoices" element={<InvoicesPage />} />
- * </Route>
- * ```
- */
 export function RoleBasedRoute({
   role,
   minimumRole,
