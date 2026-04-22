@@ -1,4 +1,5 @@
 import { useDeleteInvoiceMutation } from "@/module/invoice/api/invoiceApi";
+import { useToast } from "@/hooks/useToast";
 import "@/module/invoice/styles/invoice.css";
 
 interface DeleteInvoiceDialogProps {
@@ -11,13 +12,21 @@ export function DeleteInvoiceDialog({
   onClose,
 }: DeleteInvoiceDialogProps) {
   const [deleteInvoice, { isLoading }] = useDeleteInvoiceMutation();
+  const toast = useToast();
 
   const handleDelete = async () => {
     try {
       await deleteInvoice(invoiceId).unwrap();
+      toast.success(
+        "Invoice Deleted",
+        "The invoice has been deleted successfully.",
+      );
       onClose();
-    } catch {
-      // Error handled by RTK Query — toast could go here
+    } catch (error) {
+      const errorMessage =
+        (error as { data?: { message?: string } }).data?.message ||
+        "Failed to delete invoice";
+      toast.error("Delete Failed", errorMessage);
     }
   };
 
