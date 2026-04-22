@@ -1,0 +1,188 @@
+/* ================================================================== */
+/*  Shared Library Components Styles                                  */
+/* ================================================================== */
+
+/* ------------------------------------------------------------------ */
+/*  Search Component                                                  */
+/* ------------------------------------------------------------------ */
+
+.lib-search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 240px;
+}
+
+.lib-search-icon {
+  position: absolute;
+  left: 0.85rem;
+  width: 16px;
+  height: 16px;
+  color: #64748b;
+  pointer-events: none;
+}
+
+.lib-search-input {
+  width: 100%;
+  padding: 0.65rem 2.25rem 0.65rem 2.25rem;
+  font-size: 0.85rem;
+  color: #e2e8f0;
+  background: rgba(15, 20, 40, 0.5);
+  border: 1px solid rgba(100, 116, 139, 0.2);
+  border-radius: 10px;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.lib-search-input:focus {
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.lib-search-input::placeholder {
+  color: #64748b;
+}
+
+.lib-search-clear {
+  position: absolute;
+  right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: color 0.15s, background 0.15s;
+}
+
+.lib-search-clear:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #e2e8f0;
+}
+
+.lib-search-clear svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Sorting Component                                                 */
+/* ------------------------------------------------------------------ */
+
+.lib-sorting-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.lib-sorting-select {
+  padding: 0.65rem 2rem 0.65rem 1rem;
+  font-size: 0.85rem;
+  color: #e2e8f0;
+  background: rgba(15, 20, 40, 0.5);
+  border: 1px solid rgba(100, 116, 139, 0.2);
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  transition: all 0.2s;
+}
+
+.lib-sorting-select:focus {
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+.lib-sorting-select option {
+  background: #0f1428;
+  color: #e2e8f0;
+}
+
+.lib-sorting-order-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: rgba(15, 20, 40, 0.5);
+  border: 1px solid rgba(100, 116, 139, 0.2);
+  border-radius: 10px;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.lib-sorting-order-btn:hover {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: rgba(139, 92, 246, 0.3);
+  color: #a78bfa;
+}
+
+.lib-sorting-order-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Pagination Component                                              */
+/* ------------------------------------------------------------------ */
+
+.lib-pagination-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: 1rem 0;
+}
+
+.lib-pagination-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #e2e8f0;
+  background: rgba(15, 20, 40, 0.5);
+  border: 1px solid rgba(100, 116, 139, 0.2);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.lib-pagination-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.lib-pagination-btn:hover:not(:disabled) {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: rgba(139, 92, 246, 0.3);
+  color: #a78bfa;
+}
+
+.lib-pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  color: #64748b;
+}
+
+.lib-pagination-info {
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.lib-pagination-info strong {
+  color: #e2e8f0;
+  font-weight: 600;
+}
