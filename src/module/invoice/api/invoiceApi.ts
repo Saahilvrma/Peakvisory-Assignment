@@ -27,9 +27,7 @@ export const invoiceApi = createApi({
         params: params as Record<string, unknown>,
       }),
       providesTags: (result) => {
-        const invoices = Array.isArray(result)
-          ? result.items
-          : (result.items ?? []);
+        const invoices = result?.items ?? [];
         return [
           ...invoices.map(({ id }: { id: string }) => ({
             type: "Invoice" as const,
