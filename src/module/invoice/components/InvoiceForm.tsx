@@ -155,7 +155,7 @@ export function InvoiceForm({ mode }: InvoiceFormProps) {
               <p className="invoice-form-error">
                 {
                   (
-                    errors as UpdateInvoiceFormValues & {
+                    errors as unknown as UpdateInvoiceFormValues & {
                       status?: { message?: string };
                     }
                   ).status?.message
