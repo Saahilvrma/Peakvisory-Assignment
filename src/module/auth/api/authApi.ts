@@ -1,5 +1,5 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import axiosBaseQuery from "@/lib/api/axiosBaseQuery";
+import createAxiosBaseQuery from "@/lib/api/axiosBaseQuery";
 import type {
   AuthResponse,
   LoginPayload,
@@ -13,7 +13,7 @@ import type {
 
 export const authApi = createApi({
   reducerPath: "authApi",
-  baseQuery: axiosBaseQuery(),
+  baseQuery: createAxiosBaseQuery(),
   endpoints: (builder) => ({
     /** POST /api/auth/signup */
     signup: builder.mutation<AuthResponse, SignupPayload>({

@@ -37,8 +37,6 @@ export const getStatusColor = (status: InvoiceStatusType): string => {
     Draft: "status-draft",
     Sent: "status-sent",
     Paid: "status-paid",
-    Overdue: "status-overdue",
-    Cancelled: "status-cancelled",
   };
   return map[status] ?? "status-draft";
 };

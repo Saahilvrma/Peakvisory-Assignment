@@ -1,5 +1,5 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import axiosBaseQuery from "@/lib/api/axiosBaseQuery";
+import createAxiosBaseQuery from "@/lib/api/axiosBaseQuery";
 import type {
   Invoice,
   InvoiceListResponse,
@@ -16,7 +16,7 @@ import type {
 
 export const invoiceApi = createApi({
   reducerPath: "invoiceApi",
-  baseQuery: axiosBaseQuery(),
+  baseQuery: createAxiosBaseQuery(),
   tagTypes: ["Invoice"],
   endpoints: (builder) => ({
     /** GET /api/invoices?page=&limit=&search=&status= */
@@ -27,9 +27,7 @@ export const invoiceApi = createApi({
         params: params as Record<string, unknown>,
       }),
       providesTags: (result) => {
-        const invoices = Array.isArray(result)
-          ? result.items
-          : (result.items ?? []);
+        const invoices = result?.items ?? [];
         return [
           ...invoices.map(({ id }: { id: string }) => ({
             type: "Invoice" as const,

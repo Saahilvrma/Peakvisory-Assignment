@@ -15,6 +15,7 @@ import {
 } from "@/module/invoice/utils/validationSchemas";
 import { InvoiceStatus } from "@/module/invoice/types/invoice.types";
 import { APP_ROUTES } from "@/constants/routes";
+import { useToast } from "@/hooks/useToast";
 import "@/module/invoice/styles/invoice.css";
 
 /* ------------------------------------------------------------------ */
@@ -29,6 +30,7 @@ export function InvoiceForm({ mode }: InvoiceFormProps) {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const isEdit = mode === "edit";
+  const toast = useToast();
 
   // Fetch existing invoice for edit mode
   const { data: existing } = useGetInvoiceByIdQuery(id!, {
@@ -71,15 +73,26 @@ export function InvoiceForm({ mode }: InvoiceFormProps) {
     try {
       if (isEdit && id) {
         await updateInvoice({ id, body: values }).unwrap();
+        toast.success(
+          "Invoice Updated",
+          "Your invoice has been saved successfully.",
+        );
         navigate(`/invoices/${id}`, { replace: true });
       } else {
         const created = await createInvoice(
           values as CreateInvoiceFormValues,
         ).unwrap();
+        toast.success(
+          "Invoice Created",
+          "Your new invoice has been created successfully.",
+        );
         navigate(`/invoices/${created.id}`, { replace: true });
       }
-    } catch {
-      // API error — handled by interceptor/RTK Query
+    } catch (error) {
+      const errorMessage =
+        (error as { data?: { message?: string } }).data?.message ||
+        "An error occurred";
+      toast.error("Operation Failed", errorMessage);
     }
   };
 
@@ -142,7 +155,7 @@ export function InvoiceForm({ mode }: InvoiceFormProps) {
               <p className="invoice-form-error">
                 {
                   (
-                    errors as UpdateInvoiceFormValues & {
+                    errors as unknown as UpdateInvoiceFormValues & {
                       status?: { message?: string };
                     }
                   ).status?.message

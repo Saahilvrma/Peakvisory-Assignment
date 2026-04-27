@@ -6,8 +6,8 @@ import { DefaultQueryValues } from "../constants/defaultValues";
 import type { InvoiceStatusType } from "../types/invoice.types";
 
 export interface InvoiceQueryState {
-  page: number;
   limit: number;
+  page: number;
   search: string;
   status: InvoiceStatusType | "";
   setQuery: (
@@ -65,7 +65,7 @@ export function useInvoiceQueryState() {
     ) {
       state.setQuery({ page, limit, search, status });
     }
-  }, [searchParams, state]);
+  }, [searchParams]);
 
   // Zustand -> URL (When Zustand state changes via setQuery)
   useEffect(() => {
@@ -90,14 +90,7 @@ export function useInvoiceQueryState() {
     if (newParams.toString() !== searchParams.toString()) {
       setSearchParams(newParams, { replace: true });
     }
-  }, [
-    state.page,
-    state.limit,
-    state.search,
-    state.status,
-    searchParams,
-    setSearchParams,
-  ]);
+  }, [state.page, state.limit, state.search, state.status]);
 
   return state;
 }
